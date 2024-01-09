@@ -2,7 +2,7 @@
 # When a user enters an item, the program should print an acknowledgment of their input
 
 
-welcome_message = "Welcome to Snakes Cafe!\nPlease see our menu below.\n\nTo quit at any time, type 'quit'"
+"""welcome_message = "Welcome to Snakes Cafe!\nPlease see our menu below.\n\nTo quit at any time, type 'quit'"
 def print_message_with_astericks(message):
   message_str = str(message) 
   astericks = '*' * (len(message) + 2 )
@@ -41,7 +41,55 @@ user_order2 = input("> ")
 if user_order == user_order2:
   print(f'2 orders of {user_order} has been added to your meal ')
 else:
-  print(f'1 order of {user_order2} has been added to your meal')
+  print(f'1 order of {user_order2} has been added to your meal')"""
 
+
+def print_message_with_asterisks(message):
+    asterisks = '*' * (len(message) + 2)
+    print(asterisks)
+    print(f'{message}')
+    print(asterisks)
+
+def print_category_menu(title, items):
+    print_message_with_asterisks(title)
+    print(items)
+
+def print_menu(menu):
+    for category, (title, items) in menu.items():
+        print_category_menu(title, items)
+
+def acknowledge_order(item, count):
+    if count == 1:
+        print(f'1 order of {item} has been added to your meal')
+    else:
+        print(f'{count} orders of {item} have been added to your meal')
+
+def main():
+    welcome_message = "Welcome to Snakes Cafe!\nPlease see our menu below.\n\nTo quit at any time, type 'quit'"
+    order_message = "What would you like to order?"
+
+    menu = {
+        'appetizers': ('Appetizer', "\n\nWing\nCookies\nSpring Rolls\n\n"),
+        'entrees': ('Entree', "Salmon\nSteak\nMeat Tornado\nA Literal Garden\n\n"),
+        'desserts': ('Dessert', "Ice Cream\nCake\nPie\n\n"),
+        'drinks': ('Drink', "Coffee\nTea\nUnicorn Tears\n\n"),
+    }
+
+    print_message_with_asterisks(welcome_message)
+    print_menu(menu)
+    print_message_with_asterisks(order_message)
+
+    user_orders = []
+    while True:
+        user_order = input("> ")
+
+        if user_order.lower() == 'quit':
+            break
+
+        user_orders.append(user_order)
+        acknowledge_order(user_order, len(user_orders))
+
+if __name__ == "__main__":
+    main()
 
 
